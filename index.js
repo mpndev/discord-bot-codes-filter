@@ -1,31 +1,22 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-client.once('ready', () => {
-	console.log('Ready!')
-});
-
 client.on('message', (message) => {
-    const channel = message.channel
-    const members = channel.members
-    if (shouldMute(message.content)) {
-        members.forEach(member => {
-            member.voice.setMute(true)
-            member.voice.setDeaf(true)
-        });
-        message.channel.send('Shushhhhh is ON');
-    } else if (shouldUnMute(message.content)) {
-        members.forEach(member => {
-            member.voice.setMute(false)
-            member.voice.setDeaf(false)
-        });
-        message.channel.send('Shushhhhh is OFF');
+    if (!message.author.bot) {
+        if (message.content.length != 6 || (/[^a-z]/i.test(message.content))) {
+            message.fetch(message.id).then(msg => msg.delete())
+        } else {
+            const gameCode = message.content.toUpperCase()
+            
+            message.fetch(message.id).then(msg => msg.delete())
+            message.channel.send(message.member.displayName + ': ' + gameCode)
+        }
     }
 });
 
+const getAuthorDisplayName = async (msg) => {
+    const member = msg.guild.member(msg.author)
+    return member ? member.nickname : msg.author.username
+}
+
 client.login(process.env.DISCORD_BOT_TOKEN);
-
-const shouldMute = (messageContent) => ['/shutup', '/vaymoodu', '/muteall', 'm'].includes(messageContent)
-const shouldUnMute = (messageContent) => ['/speakup', '/vaythora', '/unmuteall', 'u'].includes(messageContent)
-
-
