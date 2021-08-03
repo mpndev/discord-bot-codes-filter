@@ -1,4 +1,4 @@
-# discord-mute-voice-channel-bot
+# discord-bot-codes-filter
 Give access to some channel, so only amoung us codes are allowed to be written there. 
 
 ## Setup
