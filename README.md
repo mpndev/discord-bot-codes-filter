@@ -4,7 +4,7 @@ Give access to some channel, so only amoung us codes are allowed to be written t
 ## Setup
 
 ```
-yarn 
+yarn install
 export DISCORD_BOT_TOKEN=<use your discord bot token here>
 ```
 
