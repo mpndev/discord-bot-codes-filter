@@ -12,7 +12,7 @@ client.on('message', (message) => {
             message.channel.send(message.member.displayName + ': ' + gameCode)
         }
     }
-});
+})
 
 const whiteList = [
     'end',
