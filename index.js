@@ -11,7 +11,7 @@ client.on('message', (message) => {
             } else {
                 const gameCode = message.content.toUpperCase()
                 
-                message.delete()
+                message.fetch(message.id).then(msg => msg.delete())
                 let button = new disbut.MessageButton()
                 button.setLabel("deactivate")
                 button.setStyle("blurple")
