@@ -3,7 +3,7 @@ const client = new Discord.Client()
 
 client.on('message', (message) => {
     if (!message.author.bot) {
-        if (message.content.length != 6 || (/[^a-z]/i.test(message.content)) || addEventListener.includes(message.content)) {
+        if (message.content.length != 6 || (/[^a-z]/i.test(message.content)) || whiteList.includes(message.content)) {
             message.fetch(message.id).then(msg => msg.delete())
         } else {
             const gameCode = message.content.toUpperCase()
